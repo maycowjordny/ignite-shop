@@ -16,10 +16,11 @@ export const {
             gray900: "#121214",
             gray800: "#202024",
             gray300: "#c4c4cc",
+            gray200: "#E1E1E6",
             gray100: "#e1e1e6",
-
             green500: "#00875f",
-            green300: "#00b37e"
+            green300: "#00b37e",
+
         },
         fontSizes: {
             md: "1.125rem",
