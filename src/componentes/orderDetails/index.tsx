@@ -1,16 +1,21 @@
 import Image from "next/image";
 import { ContainerOrderDetails, ImageContainer, InfoProduct } from "./styles";
-import camisa1 from "../../assets/1.png"
-export function OrderDetails() {
+import { priceToCurrency } from "@/utils/priceUtils";
+import { ProductProps } from "@/pages";
+
+
+
+export function OrderDetails(props: { data: ProductProps }) {
+
     return (
         <ContainerOrderDetails>
             <ImageContainer>
-                <Image src={camisa1} alt="" height={96} width={96} />
+                <Image src={props.data.imageUrl} alt="" height={96} width={96} />
             </ImageContainer>
             <InfoProduct>
                 <div>
-                    <span>Camiseta Explorer</span>
-                    <strong>R$ 79,90</strong>
+                    <span>{props.data.name}</span>
+                    <strong>{priceToCurrency(props.data.price)}</strong>
                 </div>
                 <button>Remover</button>
             </InfoProduct>

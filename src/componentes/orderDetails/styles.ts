@@ -17,7 +17,6 @@ export const ImageContainer = styled('div', {
     height: '6rem',
     padding: '0rem 0.22356rem',
     borderRadius: '0.5rem',
-
 })
 
 export const InfoProduct = styled('div', {

@@ -9,17 +9,19 @@ import Head from "next/head";
 import Stripe from "stripe";
 import Link from "next/link";
 import { Tote } from 'phosphor-react';
+import { useContext } from 'react'
+import { OrderContext } from "@/context/orderContext";
+import axios from "axios";
+import { priceToCurrency } from "@/utils/priceUtils";
+import { ProductProps } from "@/interfaces/productInterface";
 
-interface HomeProps {
-  products: {
-    id: string
-    name: string
-    imageUrl: string
-    price: string
-  }[]
+export interface HomeProps {
+  products: ProductProps[]
 }
 
 export default function Home({ products }: HomeProps) {
+
+  const { setProductsList, productsList, addToCart } = useContext(OrderContext)
 
   const [sliderRef] = useKeenSlider({
     slides: {
@@ -35,6 +37,7 @@ export default function Home({ products }: HomeProps) {
       </Head>
       <HomeContainer ref={sliderRef} className="keen-slider">
         {products.map(product => {
+
           return (
             <Link href={`/product/${product.id}`} key={product.id} prefetch={false}  >
               <Product className="keen-slider__slide">
@@ -42,10 +45,10 @@ export default function Home({ products }: HomeProps) {
                 <footer>
                   <div>
                     <strong>{product.name}</strong>
-                    <span>{product.price}</span>
+                    <span>{priceToCurrency(product.price)}</span>
 
                   </div>
-                  <button>
+                  <button onClick={() => addToCart(product)}>
                     <Tote size={24} color="#ffff" weight="bold" />
                   </button>
 
@@ -65,6 +68,7 @@ export const getStaticProps: GetStaticProps = async () => {
     expand: ['data.default_price']
   })
 
+
   const products = response.data.map(product => {
 
     const price = product.default_price as Stripe.Price
@@ -73,10 +77,9 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-      }).format((Number(price.unit_amount) / 100)),
+      price: price.unit_amount,
+      defaultPrice: price.id,
+      description: product.description
     }
   })
 
