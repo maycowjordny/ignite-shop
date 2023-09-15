@@ -21,8 +21,8 @@ export interface HomeProps {
 
 export default function Home({ products }: HomeProps) {
 
-  const { setProductsList, productsList, addToCart } = useContext(OrderContext)
-
+  const { addToCart, productsList } = useContext(OrderContext)
+  console.log(productsList, "lista da pagina home");
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 2,
@@ -39,22 +39,20 @@ export default function Home({ products }: HomeProps) {
         {products.map(product => {
 
           return (
-            <Link href={`/product/${product.id}`} key={product.id} prefetch={false}  >
-              <Product className="keen-slider__slide">
+            <Product className="keen-slider__slide" key={product.id}>
+              <Link href={`/product/${product.id}`} prefetch={false}  >
                 <Image src={product.imageUrl} alt="" width={520} height={480} />
-                <footer>
-                  <div>
-                    <strong>{product.name}</strong>
-                    <span>{priceToCurrency(product.price)}</span>
-
-                  </div>
-                  <button onClick={() => addToCart(product)}>
-                    <Tote size={24} color="#ffff" weight="bold" />
-                  </button>
-
-                </footer>
-              </Product>
-            </Link>
+              </Link>
+              <footer>
+                <div>
+                  <strong>{product.name}</strong>
+                  <span>{priceToCurrency(product.price)}</span>
+                </div>
+                <button onClick={() => addToCart(product)}>
+                  <Tote size={24} color="#ffff" weight="bold" />
+                </button>
+              </footer>
+            </Product>
           )
         })}
       </HomeContainer>

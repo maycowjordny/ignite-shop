@@ -4,30 +4,13 @@ import { CloseButton, Content, Overlay, TitleModal } from './styles';
 import { X } from "phosphor-react"
 import { useContext } from 'react'
 import { OrderContext } from "@/context/orderContext";
-import { HomeProps } from '@/pages';
-import { useState } from "react"
 import { priceToCurrency } from '@/utils/priceUtils';
-import axios from 'axios';
+
 export function OrderModal() {
+
     const { productsList } = useContext(OrderContext)
-    const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false);
 
-    async function handleByProduct() {
-        try {
-            setIsCreatingCheckoutSession(true)
-            const response = await axios.post('/api/checkout', {
-                priceId: product.defaultPriceId
-            })
 
-            const { checkoutUrl } = response.data
-
-            window.location.href = checkoutUrl
-        } catch (err) {
-            setIsCreatingCheckoutSession(false)
-            // conectar com uma ferramenta de observabilidade(Datalog/sentry)
-            alert('Falha ao redirecionar ao chekout')
-        }
-    }
     return (
         <Dialog.Portal>
             <Overlay />
@@ -54,9 +37,7 @@ export function OrderModal() {
                             <span>Valor total</span>
                             <strong>{priceToCurrency(productsList.reduce((sum, current) => sum + current.price, 0))}</strong>
                         </div>
-                        <button id='buttonPayment'
-                            disabled={isCreatingCheckoutSession}
-                            onClick={handleByProduct}>
+                        <button id='buttonPayment' >
                             Finalizar compra
                         </button>
                     </div>

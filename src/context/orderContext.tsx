@@ -1,6 +1,4 @@
-import { stripe } from "@/lib/stripe";
-import axios from "axios";
-import { ReactNode, createContext, useState, useEffect } from "react";
+import { ReactNode, createContext, useState } from "react";
 import { ProductProps } from "@/interfaces/productInterface";
 
 export interface OrderContextProps {
@@ -24,8 +22,7 @@ export function OrderContextProvider({ children }: OrderContextProps) {
         const productExisting = productsList.some(product => product.id === newProduct.id)
 
         if (!productExisting) {
-            productsList.push(newProduct)
-            setProductsList(productsList)
+            setProductsList((oldProduct) => [...oldProduct, newProduct])
         }
     }
 

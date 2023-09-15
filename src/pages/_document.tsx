@@ -1,3 +1,4 @@
+import { OrderContextProvider } from '@/context/orderContext'
 import { getCssText } from '@/styles'
 import { Html, Head, Main, NextScript } from 'next/document'
 
