@@ -7,16 +7,11 @@ import { Tote } from 'phosphor-react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { OrderModal } from '@/componentes/orderModal';
 import { OrderContext, OrderContextProvider } from '@/context/orderContext';
-import { useContext } from "react"
 globalStyles();
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { productsList } = useContext(OrderContext)
-  const product = productsList ? productsList.length : null
-  console.log(product);
 
   return (
-
     <OrderContextProvider>
       <Container>
         <Header>
@@ -24,12 +19,11 @@ export default function App({ Component, pageProps }: AppProps) {
           <Dialog.Root>
             <Dialog.Trigger asChild>
               <button>
-                {
-                  productsList ?
-                    <span>{product}</span>
-                    :
-                    null
-                }
+                <OrderContext.Consumer>
+                  {({ productsList }) => (
+                    productsList.length == 0 ? null : <span>{productsList.length}</span>
+                  )}
+                </OrderContext.Consumer>
                 <Tote size={24} color="#8D8D99" weight="bold" />
               </button>
             </Dialog.Trigger>

@@ -22,7 +22,6 @@ export interface HomeProps {
 export default function Home({ products }: HomeProps) {
 
   const { addToCart, productsList } = useContext(OrderContext)
-  console.log(productsList, "lista da pagina home");
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 2,

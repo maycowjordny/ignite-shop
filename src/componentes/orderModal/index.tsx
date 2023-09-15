@@ -5,10 +5,40 @@ import { X } from "phosphor-react"
 import { useContext } from 'react'
 import { OrderContext } from "@/context/orderContext";
 import { priceToCurrency } from '@/utils/priceUtils';
+import { stripe } from '@/lib/stripe';
+import axios from 'axios';
 
 export function OrderModal() {
 
     const { productsList } = useContext(OrderContext)
+
+    async function finalizePayment() {
+        try {
+
+            const items = productsList.map(p => {
+                return {
+                    price: p.defaultPrice,
+                    quantity: 1
+                }
+            })
+
+            const response = await axios.post('/api/checkout', {
+                data: items
+            })
+
+            const { checkoutUrl } = response.data;
+
+            window.location.href = checkoutUrl;
+        } catch (err) {
+
+            alert('Falha ao redirecionar ao checkout!')
+        }
+    }
+
+
+
+    const totalAmount = priceToCurrency(productsList.reduce((sum, current) => sum + current.price, 0))
+
 
 
     return (
@@ -35,9 +65,9 @@ export function OrderModal() {
                         </div>
                         <div className="totalAmount">
                             <span>Valor total</span>
-                            <strong>{priceToCurrency(productsList.reduce((sum, current) => sum + current.price, 0))}</strong>
+                            <strong>{totalAmount}</strong>
                         </div>
-                        <button id='buttonPayment' >
+                        <button id='buttonPayment' onClick={finalizePayment} >
                             Finalizar compra
                         </button>
                     </div>

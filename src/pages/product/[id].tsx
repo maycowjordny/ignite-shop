@@ -13,7 +13,6 @@ import { priceToCurrency } from "@/utils/priceUtils";
 export default function Product(product: ProductProps) {
 
     const { addToCart, productsList, setProductsList } = useContext(OrderContext)
-    console.log(productsList, "lista da pagina do Id");
 
     return (
         <>
