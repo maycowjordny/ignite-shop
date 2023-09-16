@@ -17,7 +17,7 @@ export const Overlay = styled(Dialog.Overlay, {
 })
 
 export const Content = styled(Dialog.Content, {
-    padding: '0rem 1rem 3rem 3rem',
+    padding: '1.5rem 1rem 3rem 3rem',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -30,8 +30,17 @@ export const Content = styled(Dialog.Content, {
     opacity: 1,
     animation: `${animationModal}  ease-in-out 0.2s`,
 
+    h1: {
+        fontFamily: 'Roboto',
+        fontSize: '2rem',
+        fontWeight: 700,
+        lineHeight: '140%',
+        textAlign: 'center',
+    },
+
     '.scroll': {
-        overflow: 'auto'
+        overflow: 'auto',
+        height: '35rem'
     },
 
     "*": {
@@ -76,8 +85,7 @@ export const Content = styled(Dialog.Content, {
         span: {
             fontSize: '1.25rem',
             color: '$gray200'
-        }
-
+        },
     },
 
     '.totalAmount': {
@@ -126,6 +134,29 @@ export const Content = styled(Dialog.Content, {
             backgroundColor: '$green300',
         }
 
+    },
+    '.withoutTshirt': {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+    },
+
+    '.shirtWrapper': {
+        width: '100%',
+        height: 145,
+        gap: '1rem',
+        marginTop: '1rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+
+        img: {
+            borderRadius: '50%',
+            background: 'linear-gradient(100deg,#1ea483 0%,#7465d4 100%)',
+            objectFit: 'cover',
+            flex: 'none'
+        }
     }
 })
 

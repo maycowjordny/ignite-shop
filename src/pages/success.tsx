@@ -19,14 +19,16 @@ export default function Success({ products, customerName }: SuccessProps) {
             </Head>
 
             <SuccessContainer>
-                <h1>Compra efetuada</h1>
-                {
-                    products.map((data: any) => (
-                        < ImageContainer >
-                            <Image src={data.price.product.images[0]} alt="imagem de uma camisa" width={110} height={120} />
-                        </ImageContainer>
-                    ))
-                }
+                <h1>Compra efetuada!</h1>
+                <div className="imageWrapper">
+                    {
+                        products.map((data: any) => (
+                            < ImageContainer >
+                                <Image src={data.price.product.images[0]} alt="imagem de uma camisa" width={110} height={120} />
+                            </ImageContainer>
+                        ))
+                    }
+                </div>
                 <p>
                     Uhuul <strong>{customerName}</strong>,  sua compra de {products.length + ` camiseta`}{products.length > 1 ? 's' : null} já está a caminho da sua casa.
                 </p>

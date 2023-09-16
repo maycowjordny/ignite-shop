@@ -34,25 +34,30 @@ export const SuccessContainer = styled('main', {
         '&:hover': {
             color: '$green300',
         }
+    },
+
+    '.imageWrapper': {
+        display: 'flex'
     }
 
 })
 
 export const ImageContainer = styled('div', {
+    marginLeft: '-2rem',
     width: '100%',
     maxWidth: 130,
     height: 145,
-    borderRadius: 8,
+    borderRadius: '50%',
     padding: '0.25rem',
     marginTop: '4rem',
-
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     background: 'linear-gradient(100deg,#1ea483 0%,#7465d4 100%)',
 
     img: {
-        objectFit: 'cover'
+        objectFit: 'cover',
+        flex: 'none'
     }
 
 

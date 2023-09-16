@@ -1,15 +1,7 @@
 import { ReactNode, createContext, useState } from "react";
 import { ProductProps } from "@/interfaces/productInterface";
+import { OrderContextProps, OrderContextType } from "../interfaces/productInterface"
 
-export interface OrderContextProps {
-    children: ReactNode
-}
-
-export interface OrderContextType {
-    productsList: ProductProps[]
-    setProductsList: React.Dispatch<React.SetStateAction<ProductProps[]>>
-    addToCart: (newProduct: ProductProps) => void
-}
 
 export const OrderContext = createContext({} as OrderContextType)
 
