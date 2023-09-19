@@ -27,7 +27,6 @@ export const InfoProduct = styled('div', {
         alignItems: 'start',
         gap: '0.12rem',
 
-
         span: {
             color: '$gray300',
             fontFamily: ' Roboto',
@@ -43,7 +42,6 @@ export const InfoProduct = styled('div', {
             fontWeight: 700,
             lineHeight: '160%',
         }
-
     },
 
     button: {

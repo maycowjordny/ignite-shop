@@ -1,6 +1,5 @@
 import { styled } from "..";
 
-
 export const SuccessContainer = styled('main', {
     display: 'flex',
     flexDirection: 'column',
@@ -39,7 +38,6 @@ export const SuccessContainer = styled('main', {
     '.imageWrapper': {
         display: 'flex'
     }
-
 })
 
 export const ImageContainer = styled('div', {

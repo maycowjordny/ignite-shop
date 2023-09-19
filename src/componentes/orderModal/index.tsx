@@ -45,7 +45,6 @@ export function OrderModal() {
             <Overlay />
             <Content>
                 <div className="scroll">
-
                     {
                         productsList.length >= 1 ?
                             <>
@@ -92,7 +91,6 @@ export function OrderModal() {
                     }
                 </div>
             </Content>
-
         </Dialog.Portal>
     )
 }

@@ -1,33 +1,36 @@
-import { styled } from "@/styles"
 import { HomeContainer, Product } from "@/styles/pages/home"
-import { useKeenSlider } from "keen-slider/react"
-import "keen-slider/keen-slider.min.css"
 import Image from 'next/image';
 import { stripe } from "@/lib/stripe";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Stripe from "stripe";
 import Link from "next/link";
-import { Tote } from 'phosphor-react';
-import { useContext } from 'react'
+import { CaretLeft, CaretRight, Tote } from 'phosphor-react';
+import { useContext, useState } from 'react'
 import { OrderContext } from "@/context/orderContext";
-import axios from "axios";
 import { priceToCurrency } from "@/utils/priceUtils";
-import { ProductProps } from "@/interfaces/productInterface";
-
-export interface HomeProps {
-  products: ProductProps[]
-}
+import { HomeProps } from "@/interfaces/productInterface";
+import "keen-slider/keen-slider.min.css"
+import { useKeenSlider } from "keen-slider/react"
 
 export default function Home({ products }: HomeProps) {
 
-  const { addToCart, productsList } = useContext(OrderContext)
-  const [sliderRef] = useKeenSlider({
+  const [showArrowLeft, setShowArrowLeft] = useState(false)
+  const [showArrowRight, setShowArrowRight] = useState(true)
+  const { addToCart } = useContext(OrderContext)
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
+    initial: 0,
+    slideChanged(slider) {
+      setShowArrowLeft(slider.animator.targetIdx != slider.track.details.minIdx);
+      setShowArrowRight(slider.animator.targetIdx != slider.track.details.maxIdx);
+    },
     slides: {
       perView: 2,
       spacing: 48,
     }
   })
+
+
 
   return (
     <>
@@ -35,6 +38,18 @@ export default function Home({ products }: HomeProps) {
         <title>Home | Ignite Shop</title>
       </Head>
       <HomeContainer ref={sliderRef} className="keen-slider">
+
+        {
+          showArrowLeft ?
+            <button
+              className="button-left"
+              onClick={(e: any) =>
+                e.stopPropagation() || instanceRef.current?.prev()}>
+              <CaretLeft size={42} weight="bold" color="#C4C4CC" />
+            </button>
+            :
+            null
+        }
         {products.map(product => {
 
           return (
@@ -54,6 +69,17 @@ export default function Home({ products }: HomeProps) {
             </Product>
           )
         })}
+        {
+          showArrowRight ?
+            <button
+              className="button-right"
+              onClick={(e: any) =>
+                e.stopPropagation() || instanceRef.current?.next()}>
+              <CaretRight size={42} weight="bold" color="#C4C4CC" />
+            </button>
+            :
+            null
+        }
       </HomeContainer>
     </>
   )

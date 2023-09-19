@@ -1,38 +1,34 @@
 import Stripe from "stripe";
-import { ImageContainer, ProductContainer, ProductDetails } from "../../styles/pages/product"
+import { ImageContainer, ProductContainer, ProductDetails } from "../../styles/pages/product";
 import { stripe } from "../../lib/stripe";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import Head from "next/head";
 import { OrderContext } from "@/context/orderContext";
 import { ProductProps } from "@/interfaces/productInterface";
 import { priceToCurrency } from "@/utils/priceUtils";
 
-
 export default function Product(product: ProductProps) {
 
-    const { addToCart, productsList, setProductsList } = useContext(OrderContext)
+    const { addToCart } = useContext(OrderContext)
 
     return (
         <>
             <Head>
                 <title>{product.name} | Ignite Shop</title>
             </Head>
-
             <ProductContainer>
                 <ImageContainer>
                     <Image src={product.imageUrl} width={520} height={480} alt="" />
                 </ImageContainer>
-
                 <ProductDetails>
                     <h1>{product.name}</h1>
                     <span>{priceToCurrency(product.price)}</span>
 
                     <p>{product.description}</p>
-
                     <button onClick={() => addToCart(product)}>
-                        Comprar agora
+                        Colocar na sacola
                     </button>
                 </ProductDetails>
             </ProductContainer>

@@ -1,7 +1,5 @@
 import { stripe } from "@/lib/stripe";
 import { NextApiRequest, NextApiResponse } from "next";
-import { OrderContext } from "@/context/orderContext";
-import { useContext } from 'react'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 

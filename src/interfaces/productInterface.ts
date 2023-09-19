@@ -18,3 +18,12 @@ export interface OrderContextType {
     setProductsList: React.Dispatch<React.SetStateAction<ProductProps[]>>
     addToCart: (newProduct: ProductProps) => void
 }
+
+export interface HomeProps {
+    products: ProductProps[]
+}
+
+export interface SuccessProps {
+    customerName: string
+    products: any
+}

@@ -6,6 +6,28 @@ export const HomeContainer = styled('main', {
     width: '100%',
     marginLeft: 'auto',
     minHeight: 656,
+    position: 'relative',
+
+    '.button-left': {
+        position: 'absolute',
+        background: 'transparent',
+        border: 'none',
+        left: 0,
+        top: '50%',
+        cursor: 'pointer',
+        transform: 'translateY(-50 %)',
+        zIndex: 1,
+    },
+
+    '.button-right': {
+        position: 'absolute',
+        cursor: 'pointer',
+        right: 0,
+        top: '50%',
+        border: 'none',
+        transform: ' translateY(-50%)',
+        background: 'transparent',
+    }
 })
 
 export const Product = styled('main', {
@@ -34,7 +56,6 @@ export const Product = styled('main', {
         transform: 'translateY(110%)',
         opacity: 0,
         transition: 'all 0.2s ease-in-out',
-
 
         div: {
             display: 'flex',
@@ -77,4 +98,3 @@ export const Product = styled('main', {
         }
     }
 })
-

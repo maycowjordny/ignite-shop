@@ -3,12 +3,8 @@ import { SuccessContainer, ImageContainer } from "@/styles/pages/success";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Stripe from "stripe";
 import Head from "next/head";
-interface SuccessProps {
-    customerName: string
-    products: any
-}
+import { SuccessProps } from "@/interfaces/productInterface";
 
 export default function Success({ products, customerName }: SuccessProps) {
     return (
@@ -17,7 +13,6 @@ export default function Success({ products, customerName }: SuccessProps) {
                 <title>Compra efetuada com sucesso | Ignite Shop</title>
                 <meta name="robots" content="noindex" />
             </Head>
-
             <SuccessContainer>
                 <h1>Compra efetuada!</h1>
                 <div className="imageWrapper">
@@ -32,7 +27,6 @@ export default function Success({ products, customerName }: SuccessProps) {
                 <p>
                     Uhuul <strong>{customerName}</strong>,  sua compra de {products.length + ` camiseta`}{products.length > 1 ? 's' : null} já está a caminho da sua casa.
                 </p>
-
                 <Link href="/">
                     Voltar ao catálogo
                 </Link>

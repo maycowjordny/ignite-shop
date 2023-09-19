@@ -16,7 +16,6 @@ export const ImageContainer = styled('div', {
     background: 'linear-gradient(100deg,#1ea483 0%,#7465d4 100%)',
     borderRadius: 8,
     padding: '0.25rem',
-
     display: 'flex',
     alignItems: "center",
     justifyContent: 'center',
@@ -25,6 +24,7 @@ export const ImageContainer = styled('div', {
         objectFit: 'cover'
     }
 })
+
 export const ProductDetails = styled('div', {
     display: "flex",
     flexDirection: 'column',
@@ -40,6 +40,7 @@ export const ProductDetails = styled('div', {
         fontSize: '$2xl',
         color: '$green300',
     },
+
     p: {
         marginTop: '2.5rem',
         fontSize: '$md',
